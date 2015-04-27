@@ -102,5 +102,18 @@ public class SigmaAir
     {
         City[] connection = getCities(cityFrom, cityTo);
 
+        if(connections[connection[0].getIndexPos()][connection[1].getIndexPos()] == Double.POSITIVE_INFINITY || connections[connection[0].getIndexPos()][connection[1].getIndexPos()] == 0)
+            return "Connection from " + cityFrom + " to " + cityTo + " does not exist!";
+
+        double deltaLatitude = Math.toRadians(connection[1].getLocation().getLat() - connection[0].getLocation().getLat());
+        double deltaLongitude = Math.toRadians(connection[1].getLocation().getLng() - connection[0].getLocation().getLng());
+        double lat1 = Math.toRadians(connection[0].getLocation().getLat());
+        double lat2 = Math.toRadians(connection[1].getLocation().getLat());
+
+        double a = Math.pow(Math.sin(deltaLatitude/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLongitude/2), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = 6371 * c;
+
+        return "Shortest path from " + cityFrom + " to " + cityTo + " is " + d + ".";
     }
 }
