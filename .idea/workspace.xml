@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3ae78f2-ff27-4ff3-9969-953e6f6d12ec" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SigmaAirDriver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SigmaAir.java" afterPath="$PROJECT_DIR$/src/SigmaAir.java" />
     </list>
     <ignored path="Homework #7.iws" />
@@ -79,8 +78,8 @@
       <file leaf-file-name="SigmaAir.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SigmaAir.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75837564" vertical-offset="2228" max-vertical-offset="3230">
-              <caret line="192" column="63" selection-start-line="192" selection-start-column="63" selection-end-line="192" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.5167513" vertical-offset="1990" max-vertical-offset="3825">
+              <caret line="164" column="9" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -604,8 +603,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SigmaAir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75837564" vertical-offset="2228" max-vertical-offset="3230">
-          <caret line="192" column="63" selection-start-line="192" selection-start-column="63" selection-end-line="192" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.5167513" vertical-offset="1990" max-vertical-offset="3825">
+          <caret line="164" column="9" selection-start-line="164" selection-start-column="9" selection-end-line="164" selection-end-column="9" />
           <folding />
         </state>
       </provider>

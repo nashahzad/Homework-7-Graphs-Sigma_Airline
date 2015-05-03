@@ -149,6 +149,41 @@ public class SigmaAir
         return "";
     }
 
+    public void printAllCities(Object comp) // prints all cities in the order based on the given Comprator
+    {
+        if(comp instanceof NameComparator)
+            printAllCitiesByName();
+    }
+
+    private void printAllCitiesByName()
+    {
+        City[] toSort = new City[cities.size()];
+        NameComparator comp = new NameComparator();
+        for(int i = 0; i < cities.size(); i++)
+        {
+            toSort[i] = cities.get(i);
+        }
+
+        int j;
+        boolean flag = true;
+        City temp;
+
+        while ( flag )
+        {
+            flag= false;    //set flag to false awaiting a possible swap
+            for( j=0;  j < toSort.length -1;  j++ )
+            {
+                if (comp.compare(toSort[j], toSort[j+1]) == -1)
+                {
+                    temp = toSort[ j ];
+                    toSort[ j ] = toSort[ j+1 ];
+                    toSort[ j+1 ] = temp;
+                    flag = true;
+                }
+            }
+        }
+    }
+
     public void printAllConnections()
     {
         for(int u = 0; u < MAX_CITIES; u++)
