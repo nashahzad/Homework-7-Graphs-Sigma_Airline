@@ -190,7 +190,6 @@ public class SigmaAir
             {
                 split = reader.nextLine();
                 citySplit = split.split(",");
-                this.addConnection(citySplit[0], citySplit[1]);
             }
 
         }catch(IOException ex)
