@@ -59,6 +59,7 @@ public class SigmaAir
             LatLng src = new LatLng(latFrom, lngFrom);
             LatLng dest = new LatLng(latTo, lngTo);
 
+            /*
             City one = new City(cityFrom);
             City two = new City(cityTo);
             one.setLocation(src);
@@ -66,13 +67,16 @@ public class SigmaAir
 
             cities.add(one);
             cities.add(two);
+            */
+
+            int[] connection = getCities(cityFrom, cityTo);
 
             double distance = LatLng.calculateDistance(src, dest);
 
-            connections[one.getIndexPos()][two.getIndexPos()] = distance;
+            connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = distance;
 
-            connections[one.getIndexPos()][one.getIndexPos()] = 0;
-            connections[two.getIndexPos()][two.getIndexPos()]= 0;
+            connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[0]).getIndexPos()] = 0;
+            connections[cities.get(connection[1]).getIndexPos()][cities.get(connection[1]).getIndexPos()]= 0;
 
         }catch(IOException ex) {}
     }
@@ -167,6 +171,25 @@ public class SigmaAir
             while(reader.hasNext())
             {
                 cities.add(new City(reader.nextLine()));
+            }
+
+        }catch(IOException ex)
+        {
+            System.out.println("File was not found.");
+        }
+    }
+
+    public void loadAllConnections(String fileName)
+    {
+        try{
+            Scanner reader = new Scanner(new File(fileName));
+            String split = "";
+            String[] citySplit = new String[2];
+
+            while(reader.hasNext())
+            {
+                split = reader.nextLine();
+                citySplit = split.split(",");
             }
 
         }catch(IOException ex)
