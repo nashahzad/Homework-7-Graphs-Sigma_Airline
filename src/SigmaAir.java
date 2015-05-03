@@ -78,6 +78,8 @@ public class SigmaAir
             connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[0]).getIndexPos()] = 0;
             connections[cities.get(connection[1]).getIndexPos()][cities.get(connection[1]).getIndexPos()]= 0;
 
+            System.out.println(cityFrom + " --> " + cityTo + " added: " + distance);
+
         }catch(IOException ex) {}
     }
 
@@ -102,6 +104,7 @@ public class SigmaAir
 
         connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = Double.POSITIVE_INFINITY;
 
+        System.out.println("Connection from " + cityFrom + " to " + cityTo + " has been removed!");
     }
 
     private double[][] floydMatrix()
@@ -149,16 +152,16 @@ public class SigmaAir
         return "";
     }
 
-    public void printAllCities(Object comp) // prints all cities in the order based on the given Comprator
+    public void printAllCities(String comp) // prints all cities in the order based on the given Comprator
     {
         System.out.printf("%28s%19s%19s", "City Name", "Latitude", "Longitude");
-        if(comp instanceof NameComparator)
+        if(comp.equalsIgnoreCase("name"))
             printAllCitiesByName();
 
-        if(comp instanceof LatComparator)
+        if(comp.equalsIgnoreCase("lat"))
             printAllCitiesByLat();
 
-        if(comp instanceof LngComparator)
+        if(comp.equalsIgnoreCase("lng"))
             printAllCitiesByLat();
     }
 
