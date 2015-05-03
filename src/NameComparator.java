@@ -10,7 +10,7 @@
 
 import java.util.Comparator;
 
-public class NameComparator {
+public class NameComparator implements Comparator {
 
     public int compare(Object cityOne, Object cityTwo) {
         City one = (City) cityOne;
