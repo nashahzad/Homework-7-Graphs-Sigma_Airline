@@ -12,8 +12,11 @@ import java.util.Comparator;
 
 public class LatComparator implements Comparator
 {
-    public int compareTo(City one, City two)
+    public int compare(Object cityOne, Object cityTwo)
     {
+        City one = (City) cityOne;
+        City two = (City) cityTwo;
+
         if(one.getLocation().getLat() == two.getLocation().getLat())
             return 0;
 
