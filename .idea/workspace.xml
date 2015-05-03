@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3ae78f2-ff27-4ff3-9969-953e6f6d12ec" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SigmaAir.java" afterPath="$PROJECT_DIR$/src/SigmaAir.java" />
     </list>
     <ignored path="Homework #7.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -78,8 +78,8 @@
       <file leaf-file-name="SigmaAir.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SigmaAir.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7928934" vertical-offset="1820" max-vertical-offset="2805">
-              <caret line="153" column="56" selection-start-line="153" selection-start-column="56" selection-end-line="153" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.74111676" vertical-offset="2126" max-vertical-offset="3111">
+              <caret line="168" column="56" selection-start-line="168" selection-start-column="56" selection-end-line="168" selection-end-column="56" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -486,8 +486,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SigmaAir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7928934" vertical-offset="1820" max-vertical-offset="2805">
-          <caret line="153" column="56" selection-start-line="153" selection-start-column="56" selection-end-line="153" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.74111676" vertical-offset="2126" max-vertical-offset="3111">
+          <caret line="168" column="56" selection-start-line="168" selection-start-column="56" selection-end-line="168" selection-end-column="56" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />

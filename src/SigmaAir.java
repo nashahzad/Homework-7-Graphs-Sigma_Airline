@@ -14,8 +14,10 @@ import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.GeocoderRequest;
 import latlng.LatLng;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class SigmaAir
 {
@@ -154,6 +156,22 @@ public class SigmaAir
                     System.out.printf("%20s-->%20s%30f\n", cities.get(u).getCity(), cities.get(v).getCity(), connections[u][v]);
                 }
             }
+        }
+    }
+
+    public void loadAllCities(String fileName)
+    {
+        try
+        {
+            Scanner reader = new Scanner(new File(fileName));
+            while(reader.hasNext())
+            {
+                cities.add(new City(reader.nextLine()));
+            }
+
+        }catch(IOException ex)
+        {
+            System.out.println("File was not found.");
         }
     }
 }
