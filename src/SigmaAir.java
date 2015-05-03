@@ -75,16 +75,16 @@ public class SigmaAir
         }catch(IOException ex) {}
     }
 
-    private City[] getCities(String cityFrom, String cityTo)
+    private int[] getCities(String cityFrom, String cityTo)
     {
-        City[] citiesToReturn = new City[2];
+        int[] citiesToReturn = new int[2];
         for(int i = 0; i < cities.size(); i++)
         {
             if(cities.get(i).getCity().equalsIgnoreCase(cityFrom))
-                citiesToReturn[0] = cities.get(i);
+                citiesToReturn[0] = i;
 
             if(cities.get(i).getCity().equalsIgnoreCase(cityTo))
-                citiesToReturn[1] = cities.get(i);
+                citiesToReturn[1] = i;
         }
 
         return citiesToReturn;
@@ -92,19 +92,42 @@ public class SigmaAir
 
     public void removeConnection(String cityFrom, String cityTo)
     {
-        City[] connection = getCities(cityFrom, cityTo);
+        int[] connection = getCities(cityFrom, cityTo);
 
-        connections[connection[0].getIndexPos()][connection[1].getIndexPos()] = Double.POSITIVE_INFINITY;
+        connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = Double.POSITIVE_INFINITY;
 
+    }
+
+    private double[][] floydMatrix()
+    {
+        double[][] floyd = new double[MAX_CITIES][MAX_CITIES];
+
+        for(int u = 0; u < MAX_CITIES; u++)
+        {
+            for(int v = 0; v < MAX_CITIES; v++)
+            {
+                floyd[u][v] = connections[u][v];
+            }
+        }
+
+        return floyd;
     }
 
     public String shortestPath(String cityFrom, String cityTo)
     {
-        City[] connection = getCities(cityFrom, cityTo);
+        int[] connection = getCities(cityFrom, cityTo);
 
-        if(connections[connection[0].getIndexPos()][connection[1].getIndexPos()] == Double.POSITIVE_INFINITY || connections[connection[0].getIndexPos()][connection[1].getIndexPos()] == 0)
+        if(connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == Double.POSITIVE_INFINITY || connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == 0)
             return "Connection from " + cityFrom + " to " + cityTo + " does not exist!";
 
+        double[][] floyd = floydMatrix();
+
+        String path = "";
+
+
+
+
+        /*
         double deltaLatitude = Math.toRadians(connection[1].getLocation().getLat() - connection[0].getLocation().getLat());
         double deltaLongitude = Math.toRadians(connection[1].getLocation().getLng() - connection[0].getLocation().getLng());
         double lat1 = Math.toRadians(connection[0].getLocation().getLat());
@@ -115,5 +138,22 @@ public class SigmaAir
         double d = 6371 * c;
 
         return "Shortest path from " + cityFrom + " to " + cityTo + " is " + d + ".";
+        */
+
+        return "";
+    }
+
+    public void printAllConnections()
+    {
+        for(int u = 0; u < MAX_CITIES; u++)
+        {
+            for(int v = 0; v < MAX_CITIES; v++)
+            {
+                if(connections[u][v] != 0 && connections[u][v] != Double.POSITIVE_INFINITY)
+                {
+                    System.out.printf("%20s-->%20s%30f\n", cities.get(u).getCity(), cities.get(v).getCity(), connections[u][v]);
+                }
+            }
+        }
     }
 }
