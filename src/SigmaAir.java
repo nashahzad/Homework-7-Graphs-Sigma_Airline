@@ -151,8 +151,15 @@ public class SigmaAir
 
     public void printAllCities(Object comp) // prints all cities in the order based on the given Comprator
     {
+        System.out.printf("%28s%19s%19s", "City Name", "Latitude", "Longitude");
         if(comp instanceof NameComparator)
             printAllCitiesByName();
+
+        if(comp instanceof LatComparator)
+            printAllCitiesByLat();
+
+        if(comp instanceof LngComparator)
+            printAllCitiesByLat();
     }
 
     private void printAllCitiesByName()
@@ -181,6 +188,79 @@ public class SigmaAir
                     flag = true;
                 }
             }
+        }
+
+        for(int i = 0; i < toSort.length; i++)
+        {
+            System.out.printf("%28s%19f%19f", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
+        }
+    }
+
+    private void printAllCitiesByLat()
+    {
+        City[] toSort = new City[cities.size()];
+        LatComparator comp = new LatComparator();
+        for(int i = 0; i < cities.size(); i++)
+        {
+            toSort[i] = cities.get(i);
+        }
+
+        int j;
+        boolean flag = true;
+        City temp;
+
+        while ( flag )
+        {
+            flag= false;    //set flag to false awaiting a possible swap
+            for( j=0;  j < toSort.length -1;  j++ )
+            {
+                if (comp.compare(toSort[j], toSort[j+1]) == -1)
+                {
+                    temp = toSort[ j ];
+                    toSort[ j ] = toSort[ j+1 ];
+                    toSort[ j+1 ] = temp;
+                    flag = true;
+                }
+            }
+        }
+
+        for(int i = 0; i < toSort.length; i++)
+        {
+            System.out.printf("%28s%19f%19f", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
+        }
+    }
+
+    private void printAllCitiesByLng()
+    {
+        City[] toSort = new City[cities.size()];
+        LngComparator comp = new LngComparator();
+        for(int i = 0; i < cities.size(); i++)
+        {
+            toSort[i] = cities.get(i);
+        }
+
+        int j;
+        boolean flag = true;
+        City temp;
+
+        while ( flag )
+        {
+            flag= false;    //set flag to false awaiting a possible swap
+            for( j=0;  j < toSort.length -1;  j++ )
+            {
+                if (comp.compare(toSort[j], toSort[j+1]) == -1)
+                {
+                    temp = toSort[ j ];
+                    toSort[ j ] = toSort[ j+1 ];
+                    toSort[ j+1 ] = temp;
+                    flag = true;
+                }
+            }
+        }
+
+        for(int i = 0; i < toSort.length; i++)
+        {
+            System.out.printf("%28s%19f%19f", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
         }
     }
 
