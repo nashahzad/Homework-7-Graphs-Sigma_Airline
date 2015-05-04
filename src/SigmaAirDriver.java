@@ -28,6 +28,7 @@ public class SigmaAirDriver
             if(choice.equalsIgnoreCase("A"))
             {
                 System.out.print("Enter the name of the city: ");
+                input.nextLine();
                 String cityName = input.nextLine();
                 airline.addCity(cityName);
             }
@@ -35,6 +36,7 @@ public class SigmaAirDriver
             if(choice.equalsIgnoreCase("B"))
             {
                 System.out.print("Enter source city: ");
+                input.nextLine();
                 String source = input.nextLine();
                 System.out.print("Enter destination city: ");
                 String dest = input.nextLine();
@@ -85,9 +87,10 @@ public class SigmaAirDriver
             if(choice.equalsIgnoreCase("G"))
             {
                 System.out.print("Enter source city: ");
-                String source = input.next();
+                input.nextLine();
+                String source = input.nextLine();
                 System.out.print("Enter destination city: ");
-                String dest = input.next();
+                String dest = input.nextLine();
 
                 airline.removeConnection(source, dest);
             }
