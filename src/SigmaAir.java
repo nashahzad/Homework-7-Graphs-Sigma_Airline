@@ -33,8 +33,25 @@ public class SigmaAir
 
     public void addCity(String city)
     {
-        City toAdd = new City(city);
-        cities.add(toAdd);
+        try {
+            Geocoder geocoder = new Geocoder();
+            GeocoderRequest geocoderRequest;
+            GeocodeResponse geocodeResponse;
+            double latFrom, lngFrom;
+
+            geocoderRequest = new GeocoderRequestBuilder().setAddress(city).getGeocoderRequest();
+            geocodeResponse = geocoder.geocode(geocoderRequest);
+            latFrom = geocodeResponse.getResults().get(0).getGeometry().getLocation().getLat().doubleValue();
+            lngFrom = geocodeResponse.getResults().get(0).getGeometry().getLocation().getLng().doubleValue();
+            LatLng src = new LatLng(latFrom, lngFrom);
+            City toAdd = new City(city);
+            toAdd.setLocation(src);
+            
+            cities.add(toAdd);
+        }catch(IOException ex)
+        {
+            System.out.println("City does not exist.");
+        }
     }
 
     public void addConnection(String cityFrom, String cityTo)
