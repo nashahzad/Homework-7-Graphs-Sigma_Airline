@@ -28,15 +28,16 @@ public class SigmaAirDriver
             if(choice.equalsIgnoreCase("A"))
             {
                 System.out.print("Enter the name of the city: ");
-                airline.addCity(input.next());
+                String cityName = input.nextLine();
+                airline.addCity(cityName);
             }
 
             if(choice.equalsIgnoreCase("B"))
             {
                 System.out.print("Enter source city: ");
-                String source = input.next();
+                String source = input.nextLine();
                 System.out.print("Enter destination city: ");
-                String dest = input.next();
+                String dest = input.nextLine();
 
                 airline.addConnection(source, dest);
             }

@@ -294,7 +294,7 @@ public class SigmaAir
 
     public void printAllConnections()
     {
-        System.out.printf("%-40s %s", "Route", "Distance");
+        System.out.printf("%-40s %s\n", "Route", "Distance");
         for(int u = 0; u < MAX_CITIES; u++)
         {
             for(int v = 0; v < MAX_CITIES; v++)
