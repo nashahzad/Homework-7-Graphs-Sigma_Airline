@@ -327,7 +327,7 @@ public class SigmaAir
         double[][] dist = new double[MAX_CITIES][MAX_CITIES];
         double[][] next = new double[MAX_CITIES][MAX_CITIES];
 
-        dist = this.floydMatrix();
+        //dist = this.floydMatrix();
 
         for(int u = 0; u < MAX_CITIES; u++){
             for(int v = 0; v < MAX_CITIES; v++){
