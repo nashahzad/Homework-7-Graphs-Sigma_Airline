@@ -321,13 +321,20 @@ public class SigmaAir
     {
         int[] connection = getCities(cityFrom, cityTo);
 
-        if(connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == Double.POSITIVE_INFINITY || connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == 0)
-            return "Connection from " + cityFrom + " to " + cityTo + " does not exist!";
+        /*if(connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == Double.POSITIVE_INFINITY || connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == 0)
+            return "Connection from " + cityFrom + " to " + cityTo + " does not exist!"; */
 
         double[][] dist = new double[MAX_CITIES][MAX_CITIES];
         double[][] next = new double[MAX_CITIES][MAX_CITIES];
 
         dist = this.floydMatrix();
+
+        for(int u = 0; u < MAX_CITIES; u++){
+            for(int v = 0; v < MAX_CITIES; v++){
+                dist[u][v] = connections[u][v];
+                next[u][v] = v;
+            }
+        }
 
         for(int k = 1; k < MAX_CITIES; k++){
             for(int i = 1; i < MAX_CITIES; i++){
@@ -340,7 +347,8 @@ public class SigmaAir
                 }
             }
         }
-        
+
+        return dist[connection[0]][connection[1]] + "\n" + next[connection[0]][connection[1]] + "\n";
         /*
         double deltaLatitude = Math.toRadians(connection[1].getLocation().getLat() - connection[0].getLocation().getLat());
         double deltaLongitude = Math.toRadians(connection[1].getLocation().getLng() - connection[0].getLocation().getLng());
@@ -354,6 +362,6 @@ public class SigmaAir
         return "Shortest path from " + cityFrom + " to " + cityTo + " is " + d + ".";
         */
 
-        return "";
+        //return "";
     }
 }

@@ -115,11 +115,12 @@ public class SigmaAirDriver
             if(choice.equalsIgnoreCase("H"))
             {
                 System.out.print("Enter source city: ");
-                String source = input.next();
+                input.nextLine();
+                String source = input.nextLine();
                 System.out.print("Enter destination city: ");
-                String dest = input.next();
+                String dest = input.nextLine();
 
-                airline.shortestPath(source, dest);
+                System.out.println(airline.shortestPath(source, dest));
             }
 
         }
