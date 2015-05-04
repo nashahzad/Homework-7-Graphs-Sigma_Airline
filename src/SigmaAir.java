@@ -46,7 +46,7 @@ public class SigmaAir
             LatLng src = new LatLng(latFrom, lngFrom);
             City toAdd = new City(city);
             toAdd.setLocation(src);
-            
+
             cities.add(toAdd);
         }catch(IOException ex)
         {
@@ -172,7 +172,7 @@ public class SigmaAir
 
     public void printAllCities(String comp) // prints all cities in the order based on the given Comprator
     {
-        System.out.printf("%28s%19s%19s", "City Name", "Latitude", "Longitude");
+        System.out.printf("%-28s%-19s%-19s\n", "City Name", "Latitude", "Longitude");
         if(comp.equalsIgnoreCase("name"))
             printAllCitiesByName();
 
@@ -213,7 +213,7 @@ public class SigmaAir
 
         for(int i = 0; i < toSort.length; i++)
         {
-            System.out.printf("%28s%19f%19f", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
+            System.out.printf("%-28s%-19f%-19f\n", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
         }
     }
 
@@ -247,7 +247,7 @@ public class SigmaAir
 
         for(int i = 0; i < toSort.length; i++)
         {
-            System.out.printf("%28s%19f%19f", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
+            System.out.printf("%-28s%-19f%-19f\n", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
         }
     }
 
@@ -281,7 +281,7 @@ public class SigmaAir
 
         for(int i = 0; i < toSort.length; i++)
         {
-            System.out.printf("%28s%19f%19f", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
+            System.out.printf("%-28s%-19f%-19f\n", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
         }
     }
 
@@ -293,7 +293,7 @@ public class SigmaAir
             {
                 if(connections[u][v] != 0 && connections[u][v] != Double.POSITIVE_INFINITY)
                 {
-                    System.out.printf("%20s-->%20s%30f\n", cities.get(u).getCity(), cities.get(v).getCity(), connections[u][v]);
+                    System.out.printf("%s --> %s %f\n", cities.get(u).getCity(), cities.get(v).getCity(), connections[u][v]);
                 }
             }
         }
