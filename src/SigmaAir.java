@@ -181,7 +181,7 @@ public class SigmaAir
                 printAllCitiesByLat();
 
             if (comp.equalsIgnoreCase("lng"))
-                printAllCitiesByLat();
+                printAllCitiesByLng();
         }
         else
         {
