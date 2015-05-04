@@ -130,6 +130,7 @@ public class SigmaAir
             return "Connection from " + cityFrom + " to " + cityTo + " does not exist!";
 
         double[][] floyd = floydMatrix();
+        City[][] city = new City[MAX_CITIES][MAX_CITIES];
 
         String path = "";
 

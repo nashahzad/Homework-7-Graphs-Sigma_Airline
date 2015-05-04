@@ -20,7 +20,7 @@ public class SigmaAirDriver
 
         while(!choice.equalsIgnoreCase("Q"))
         {
-            System.out.println("(A) Add City\n(B) Add Connection\n(C) Load All Cities\n(D) Load all connections\n(E) Print all Cities\n(F)Print all Connections\n(G) Remove Connection\n(H) Find Shortest Path\n(Q) Quit");
+            System.out.println("(A) Add City\n(B) Add Connection\n(C) Load All Cities\n(D) Load all connections\n(E) Print all Cities\n(F) Print all Connections\n(G) Remove Connection\n(H) Find Shortest Path\n(Q) Quit");
 
             System.out.print("\nEnter a selection: ");
             choice = input.next();
@@ -104,5 +104,6 @@ public class SigmaAirDriver
     }
     public static void main(String[] args) {
         menu();
+        System.out.println("Program terminating...");
     }
 }
