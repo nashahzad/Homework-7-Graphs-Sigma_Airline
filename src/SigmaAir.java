@@ -124,51 +124,7 @@ public class SigmaAir
         System.out.println("Connection from " + cityFrom + " to " + cityTo + " has been removed!");
     }
 
-    private double[][] floydMatrix()
-    {
-        double[][] floyd = new double[MAX_CITIES][MAX_CITIES];
 
-        for(int u = 0; u < MAX_CITIES; u++)
-        {
-            for(int v = 0; v < MAX_CITIES; v++)
-            {
-                floyd[u][v] = connections[u][v];
-            }
-        }
-
-        return floyd;
-    }
-
-    public String shortestPath(String cityFrom, String cityTo)
-    {
-        int[] connection = getCities(cityFrom, cityTo);
-
-        if(connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == Double.POSITIVE_INFINITY || connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == 0)
-            return "Connection from " + cityFrom + " to " + cityTo + " does not exist!";
-
-        double[][] floyd = floydMatrix();
-        City[][] city = new City[MAX_CITIES][MAX_CITIES];
-
-        String path = "";
-
-
-
-
-        /*
-        double deltaLatitude = Math.toRadians(connection[1].getLocation().getLat() - connection[0].getLocation().getLat());
-        double deltaLongitude = Math.toRadians(connection[1].getLocation().getLng() - connection[0].getLocation().getLng());
-        double lat1 = Math.toRadians(connection[0].getLocation().getLat());
-        double lat2 = Math.toRadians(connection[1].getLocation().getLat());
-
-        double a = Math.pow(Math.sin(deltaLatitude/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLongitude/2), 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double d = 6371 * c;
-
-        return "Shortest path from " + cityFrom + " to " + cityTo + " is " + d + ".";
-        */
-
-        return "";
-    }
 
     public void printAllCities(String comp) // prints all cities in the order based on the given Comprator
     {
@@ -344,5 +300,60 @@ public class SigmaAir
         {
             System.out.println("File was not found.");
         }
+    }
+
+    private double[][] floydMatrix()
+    {
+        double[][] floyd = new double[MAX_CITIES][MAX_CITIES];
+
+        for(int u = 0; u < MAX_CITIES; u++)
+        {
+            for(int v = 0; v < MAX_CITIES; v++)
+            {
+                floyd[u][v] = connections[u][v];
+            }
+        }
+
+        return floyd;
+    }
+
+    public String shortestPath(String cityFrom, String cityTo)
+    {
+        int[] connection = getCities(cityFrom, cityTo);
+
+        if(connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == Double.POSITIVE_INFINITY || connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] == 0)
+            return "Connection from " + cityFrom + " to " + cityTo + " does not exist!";
+
+        double[][] dist = new double[MAX_CITIES][MAX_CITIES];
+        double[][] next = new double[MAX_CITIES][MAX_CITIES];
+
+        dist = this.floydMatrix();
+
+        for(int k = 1; k < MAX_CITIES; k++){
+            for(int i = 1; i < MAX_CITIES; i++){
+                for(int j = 1; j < MAX_CITIES; j++){
+                    if(dist[i][j] + dist[k][j] < dist[i][j])
+                    {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        next[i][j] = next[i][k];
+                    }
+                }
+            }
+        }
+        
+        /*
+        double deltaLatitude = Math.toRadians(connection[1].getLocation().getLat() - connection[0].getLocation().getLat());
+        double deltaLongitude = Math.toRadians(connection[1].getLocation().getLng() - connection[0].getLocation().getLng());
+        double lat1 = Math.toRadians(connection[0].getLocation().getLat());
+        double lat2 = Math.toRadians(connection[1].getLocation().getLat());
+
+        double a = Math.pow(Math.sin(deltaLatitude/2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(deltaLongitude/2), 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double d = 6371 * c;
+
+        return "Shortest path from " + cityFrom + " to " + cityTo + " is " + d + ".";
+        */
+
+        return "";
     }
 }
