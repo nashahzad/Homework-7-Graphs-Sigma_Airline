@@ -8,14 +8,31 @@
  * @author Nauman
  */
 
+import java.io.*;
 import java.util.Scanner;
 
 public class SigmaAirDriver
 {
+    public static SigmaAir airlineSetUp(SigmaAir airline)
+    {
+        try {
+            FileInputStream file = new FileInputStream("library.obj");
+            ObjectInputStream fin  = new ObjectInputStream(file);
+            airline = (SigmaAir) fin.readObject(); //readObject() returns Object, so must typecast to HashedLibrary
+            fin.close();
+            System.out.println("The library obj has been loaded in.");
+            return airline;
+        } catch(IOException e){
+            System.out.println("The library obj file has not been found.");
+            return new SigmaAir();
+        }catch(ClassNotFoundException ex){ return new SigmaAir(); }
+    }
+
     public static void menu()
     {
         Scanner input = new Scanner(System.in);
         SigmaAir airline = new SigmaAir();
+        airline = airlineSetUp(airline);
         String choice = "", choiceTwo = "";
 
         while(!choice.equalsIgnoreCase("Q"))
@@ -103,6 +120,19 @@ public class SigmaAirDriver
                 String dest = input.next();
 
                 airline.shortestPath(source, dest);
+            }
+
+            if(choice.equalsIgnoreCase("Q"))
+            {
+                try {
+                    FileOutputStream file = new FileOutputStream("library.obj");
+                    ObjectOutputStream fout = new ObjectOutputStream(file);
+                    fout.writeObject(airline); //Writes myLibrary to filename.obj
+                    fout.close();
+                    System.out.println("The SigmaAir airline has now been saved into the library.obj.");
+                } catch (IOException e){
+                    // handle IO exceptions here
+                }
             }
         }
 
