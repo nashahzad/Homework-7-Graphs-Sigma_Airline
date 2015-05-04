@@ -217,6 +217,7 @@ public class SigmaAir
             }
         }
 
+
         for(int i = 0; i < toSort.length; i++)
         {
             System.out.printf("%-28s%-19f%-19f\n", toSort[i].getCity(), toSort[i].getLocation().getLat(), toSort[i].getLocation().getLng());
@@ -293,13 +294,14 @@ public class SigmaAir
 
     public void printAllConnections()
     {
+        System.out.printf("%-40s %s", "Route", "Distance");
         for(int u = 0; u < MAX_CITIES; u++)
         {
             for(int v = 0; v < MAX_CITIES; v++)
             {
                 if(connections[u][v] != 0 && connections[u][v] != Double.POSITIVE_INFINITY)
                 {
-                    System.out.printf("%s --> %s %f\n", cities.get(u).getCity(), cities.get(v).getCity(), connections[u][v]);
+                    System.out.printf("%-40s %f\n", cities.get(u).getCity() + " --> " + cities.get(v).getCity(), connections[u][v]);
                 }
             }
         }
@@ -310,9 +312,12 @@ public class SigmaAir
         try
         {
             Scanner reader = new Scanner(new File(fileName));
+            String name = "";
             while(reader.hasNext())
             {
-                cities.add(new City(reader.nextLine()));
+                name = reader.nextLine();
+                City toAdd = new City(name);
+                cities.add(toAdd);
             }
 
         }catch(IOException ex)

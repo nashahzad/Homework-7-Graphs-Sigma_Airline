@@ -44,7 +44,8 @@ public class SigmaAirDriver
             if(choice.equalsIgnoreCase("C"))
             {
                 System.out.print("Enter the file name: ");
-                airline.loadAllCities(input.next());
+                String fileName = input.next();
+                airline.loadAllCities(fileName);
             }
 
             if(choice.equalsIgnoreCase("D"))
