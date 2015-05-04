@@ -173,14 +173,20 @@ public class SigmaAir
     public void printAllCities(String comp) // prints all cities in the order based on the given Comprator
     {
         System.out.printf("%-28s%-19s%-19s\n", "City Name", "Latitude", "Longitude");
-        if(comp.equalsIgnoreCase("name"))
-            printAllCitiesByName();
+        if(!cities.isEmpty()) {
+            if (comp.equalsIgnoreCase("name"))
+                printAllCitiesByName();
 
-        if(comp.equalsIgnoreCase("lat"))
-            printAllCitiesByLat();
+            if (comp.equalsIgnoreCase("lat"))
+                printAllCitiesByLat();
 
-        if(comp.equalsIgnoreCase("lng"))
-            printAllCitiesByLat();
+            if (comp.equalsIgnoreCase("lng"))
+                printAllCitiesByLat();
+        }
+        else
+        {
+            System.out.println("List of cities is empty, nothing to print out at the moment.");
+        }
     }
 
     private void printAllCitiesByName()
