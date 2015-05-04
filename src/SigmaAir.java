@@ -316,8 +316,8 @@ public class SigmaAir
             while(reader.hasNext())
             {
                 name = reader.nextLine();
-                City toAdd = new City(name);
-                cities.add(toAdd);
+
+                this.addCity(name);
             }
 
         }catch(IOException ex)

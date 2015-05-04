@@ -122,18 +122,16 @@ public class SigmaAirDriver
                 airline.shortestPath(source, dest);
             }
 
-            if(choice.equalsIgnoreCase("Q"))
-            {
-                try {
-                    FileOutputStream file = new FileOutputStream("library.obj");
-                    ObjectOutputStream fout = new ObjectOutputStream(file);
-                    fout.writeObject(airline); //Writes myLibrary to filename.obj
-                    fout.close();
-                    System.out.println("The SigmaAir airline has now been saved into the library.obj.");
-                } catch (IOException e){
-                    // handle IO exceptions here
-                }
-            }
+        }
+
+        try {
+            FileOutputStream file = new FileOutputStream("library.obj");
+            ObjectOutputStream fout = new ObjectOutputStream(file);
+            fout.writeObject(airline); //Writes airline to library.obj
+            fout.close();
+            System.out.println("The SigmaAir airline has now been saved into the library.obj.");
+        } catch (IOException e){
+            // handle IO exceptions here
         }
 
     }
