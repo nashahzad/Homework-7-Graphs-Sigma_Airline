@@ -16,14 +16,14 @@ public class SigmaAirDriver
     public static SigmaAir airlineSetUp(SigmaAir airline)
     {
         try {
-            FileInputStream file = new FileInputStream("library.obj");
+            FileInputStream file = new FileInputStream("airline.obj");
             ObjectInputStream fin  = new ObjectInputStream(file);
-            airline = (SigmaAir) fin.readObject(); //readObject() returns Object, so must typecast to HashedLibrary
+            airline = (SigmaAir) fin.readObject(); //readObject() returns Object, so must typecast to SigmaAir
             fin.close();
-            System.out.println("The library obj has been loaded in.");
+            System.out.println("The airline obj has been loaded in.");
             return airline;
         } catch(IOException e){
-            System.out.println("The library obj file has not been found.");
+            System.out.println("The airline obj file has not been found.");
             return new SigmaAir();
         }catch(ClassNotFoundException ex){ return new SigmaAir(); }
     }
@@ -123,19 +123,27 @@ public class SigmaAirDriver
                 System.out.println(airline.shortestPath(source, dest));
             }
 
-        }
+            if(choice.equalsIgnoreCase("Q"))
+            {
+                saveAirlineObj(airline);
+            }
 
+        }
+    }
+
+    public static void saveAirlineObj(SigmaAir airline)
+    {
         try {
-            FileOutputStream file = new FileOutputStream("library.obj");
+            FileOutputStream file = new FileOutputStream("airline.obj");
             ObjectOutputStream fout = new ObjectOutputStream(file);
-            fout.writeObject(airline); //Writes airline to library.obj
+            fout.writeObject(airline); //Writes airline to airline.obj
             fout.close();
-            System.out.println("The SigmaAir airline has now been saved into the library.obj.");
+            System.out.println("The SigmaAir airline has now been saved into the airline.obj.");
         } catch (IOException e){
             // handle IO exceptions here
         }
-
     }
+
     public static void main(String[] args) {
         menu();
         System.out.println("Program terminating...");
