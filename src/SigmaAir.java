@@ -57,6 +57,7 @@ public class SigmaAir
     public void addConnection(String cityFrom, String cityTo)
     {
         try{
+            /*
             Geocoder geocoder = new Geocoder();
             GeocoderRequest geocoderRequest;
             GeocodeResponse geocodeResponse;
@@ -76,7 +77,7 @@ public class SigmaAir
             LatLng src = new LatLng(latFrom, lngFrom);
             LatLng dest = new LatLng(latTo, lngTo);
 
-            /*
+
             City one = new City(cityFrom);
             City two = new City(cityTo);
             one.setLocation(src);
@@ -86,9 +87,13 @@ public class SigmaAir
             cities.add(two);
             */
 
-            int[] connection = getCities(cityFrom, cityTo);
+            int[] connection = this.getCities(cityFrom, cityTo);
+            if(connection[0] == -1 || connection[1] == -1)
+            {
+                System.out.println("Cannot add connection one of the cities was not added in first.");
+            }
 
-            double distance = LatLng.calculateDistance(src, dest);
+            double distance = LatLng.calculateDistance(cities.get(connection[0]).getLocation(), cities.get(connection[0]).getLocation());
 
             connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = distance;
 
@@ -103,6 +108,8 @@ public class SigmaAir
     private int[] getCities(String cityFrom, String cityTo)
     {
         int[] citiesToReturn = new int[2];
+        citiesToReturn[0] = -1;
+        citiesToReturn[1] = -1;
         for(int i = 0; i < cities.size(); i++)
         {
             if(cities.get(i).getCity().equalsIgnoreCase(cityFrom))
