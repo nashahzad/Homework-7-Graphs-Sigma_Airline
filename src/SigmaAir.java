@@ -48,6 +48,8 @@ public class SigmaAir
             toAdd.setLocation(src);
 
             cities.add(toAdd);
+
+            System.out.println(toAdd.getCity() + " has been added: (" + latFrom + ", " + lngFrom + ")");
         }catch(IOException ex)
         {
             System.out.println("City does not exist.");
