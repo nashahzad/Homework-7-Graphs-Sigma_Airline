@@ -23,7 +23,7 @@ import java.util.Scanner;
 public class SigmaAir implements Serializable
 {
     private ArrayList<City> cities;
-    public static final int MAX_CITIES = 100;
+    private static final int MAX_CITIES = 100;
     private double[][] connections;
 
     /**
