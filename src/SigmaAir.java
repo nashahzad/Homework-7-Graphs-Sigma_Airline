@@ -452,10 +452,10 @@ public class SigmaAir
             while(u != v)
             {
                 u = next[u][v].getIndexPos();
-                path += " --> " + cities.get(u).getCity();
+                path = path + " --> " + cities.get(u).getCity();
             }
 
-            return path + "\nDistance: " + dist[from.getIndexPos()][to.getIndexPos()];
+            return path + "\nDistance: " + dist[u][v];
         }
 
         return dist[connection[0]][connection[1]] + "\n" + next[connection[0]][connection[1]] + "\n";
