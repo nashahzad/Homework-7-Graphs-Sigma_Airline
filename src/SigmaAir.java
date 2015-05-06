@@ -349,6 +349,8 @@ public class SigmaAir implements Serializable
                 this.addCity(name);
             }
 
+            reader.close();
+
         }catch(IOException ex)
         {
             System.out.println("File was not found.");
@@ -374,6 +376,8 @@ public class SigmaAir implements Serializable
                 citySplit = split.split(",");
                 this.addConnection(citySplit[0], citySplit[1]);
             }
+
+            reader.close();
 
         }catch(IOException ex)
         {
