@@ -25,12 +25,22 @@ public class SigmaAir
     public static final int MAX_CITIES = 100;
     private double[][] connections;
 
+    /**
+     * No argument constructor for SigmaAir
+     * <dt><b>Postconditions:</b></dd> New SigmaAir object has been made.
+     */
     public SigmaAir()
     {
         cities = new ArrayList<City>();
         connections = new double[MAX_CITIES][MAX_CITIES];
     }
 
+    /**
+     * Method to add a city into SigmaAir
+     * @param city Name of the city to add.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     * <dt><b>Postconditions:</b></dd> A new city has been added.
+     */
     public void addCity(String city)
     {
         try {
@@ -58,6 +68,13 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Adds a connection between two cities.
+     * @param cityFrom Source city.
+     * @param cityTo Destination city.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated and both cities must have already been added.
+     * <dt><b>Postconditions:</b></dd> A new connection has been added into the adjacency matrix.
+     */
     public void addConnection(String cityFrom, String cityTo)
     {
 
@@ -113,6 +130,13 @@ public class SigmaAir
 
     }
 
+    /**
+     * Private method to get corresponding index of the cities in the arraylist.
+     * @param cityFrom Source city.
+     * @param cityTo Destination city.
+     * @return Returns array of the index values.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     private int[] getCities(String cityFrom, String cityTo)
     {
         int[] citiesToReturn = new int[2];
@@ -130,6 +154,13 @@ public class SigmaAir
         return citiesToReturn;
     }
 
+    /**
+     * Method to remove a connection from matrix.
+     * @param cityFrom Source city.
+     * @param cityTo Destination city.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     * <dt><b>Postconditions:</b></dd> The connection has been removed and value has been set to POSITIVE_INFINITY in its place.
+     */
     public void removeConnection(String cityFrom, String cityTo)
     {
         int[] connection = getCities(cityFrom, cityTo);
@@ -140,7 +171,11 @@ public class SigmaAir
     }
 
 
-
+    /**
+     * Method to print out all the cities that have been added.
+     * @param comp Comparator on which the order of the cities will be printed out on.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     public void printAllCities(String comp) // prints all cities in the order based on the given Comprator
     {
         System.out.printf("%-28s%-19s%-19s\n", "City Name", "Latitude", "Longitude");
@@ -160,6 +195,10 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Method to print out cities by name in alphabetical order.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     private void printAllCitiesByName()
     {
         City[] toSort = new City[cities.size()];
@@ -195,6 +234,10 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Prints out order in ascending latitude.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     private void printAllCitiesByLat()
     {
         City[] toSort = new City[cities.size()];
@@ -229,6 +272,10 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Prints out in order of ascending longitude.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     private void printAllCitiesByLng()
     {
         City[] toSort = new City[cities.size()];
@@ -263,6 +310,10 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Prints out all of the connections.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     public void printAllConnections()
     {
         System.out.printf("%-40s %s\n", "Route", "Distance");
@@ -278,6 +329,12 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Loads in cities from a text file.
+     * @param fileName Text file name.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     * <dt><b>Postconditions:</b></dd> All of the cities have been loaded in if any from the specified text file if it existed.
+     */
     public void loadAllCities(String fileName)
     {
         try
@@ -297,6 +354,12 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Loads in connections from a text file.
+     * @param fileName Text file name.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     * <dt><b>Postconditions:</b></dd> All of the connections have been loaded in if any from the specified text file if it existed.
+     */
     public void loadAllConnections(String fileName)
     {
         try{
@@ -317,6 +380,11 @@ public class SigmaAir
         }
     }
 
+    /**
+     * Method to copy over adjacency matrix
+     * @return Returns copied matrix.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     private double[][] floydMatrix()
     {
         double[][] floyd = new double[MAX_CITIES][MAX_CITIES];
@@ -332,6 +400,13 @@ public class SigmaAir
         return floyd;
     }
 
+    /**
+     * Method that should print out the shortes path and distance between two cities based on connections and cities that have been added.
+     * @param cityFrom Source city.
+     * @param cityTo Destination city.
+     * @return Returns the shortest path if it exists.
+     * <dt><b>Preconditions:</b></dd> The SigmaAir object must already be instantiated.
+     */
     public String shortestPath(String cityFrom, String cityTo)
     {
         int[] connection = getCities(cityFrom, cityTo);
