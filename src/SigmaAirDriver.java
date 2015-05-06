@@ -13,6 +13,12 @@ import java.util.Scanner;
 
 public class SigmaAirDriver
 {
+    /**
+     * Method to see if an airline.obj file exists and to load it in.
+     * @param airline SigmaAir object to load file into.
+     * @return Returns the SigmaAir obj.
+     * <dt><b>Preconditions:</b></dd> airline passed in should already be instantiated.
+     */
     public static SigmaAir airlineSetUp(SigmaAir airline)
     {
         try {
@@ -28,6 +34,9 @@ public class SigmaAirDriver
         }catch(ClassNotFoundException ex){ return new SigmaAir(); }
     }
 
+    /**
+     * Main menu of choices that the user will be interacting with. Upon exiting the SigmaAir obj will be saved into a file, airline.obj.
+     */
     public static void menu()
     {
         Scanner input = new Scanner(System.in);
@@ -131,6 +140,11 @@ public class SigmaAirDriver
         }
     }
 
+    /**
+     * Method to save the SigmaAir airline object into a file, airline.obj.
+     * @param airline SigmaAir object to save into a file.
+     * <dt><b>Preconditions:</b></dd> airline passed in should already be instantiated.
+     */
     public static void saveAirlineObj(SigmaAir airline)
     {
         try {
