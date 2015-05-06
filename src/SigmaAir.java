@@ -56,14 +56,31 @@ public class SigmaAir
 
     public void addConnection(String cityFrom, String cityTo)
     {
-        try{
+
             /*
-            Geocoder geocoder = new Geocoder();
-            GeocoderRequest geocoderRequest;
-            GeocodeResponse geocodeResponse;
+            City one = new City(cityFrom);
+            City two = new City(cityTo);
+            one.setLocation(src);
+            two.setLocation(dest);
 
-            double latFrom, latTo, lngFrom, lngTo;
+            cities.add(one);
+            cities.add(two);
+            */
 
+            int[] connection = this.getCities(cityFrom, cityTo);
+            if(connection[0] == -1 || connection[1] == -1)
+            {
+                System.out.println("Cannot add connection one of the cities was not added in first.");
+                return;
+            }
+
+        Geocoder geocoder = new Geocoder();
+        GeocoderRequest geocoderRequest;
+        GeocodeResponse geocodeResponse;
+
+        double latFrom, latTo, lngFrom, lngTo;
+
+        try {
             geocoderRequest = new GeocoderRequestBuilder().setAddress(cityFrom).getGeocoderRequest();
             geocodeResponse = geocoder.geocode(geocoderRequest);
             latFrom = geocodeResponse.getResults().get(0).getGeometry().getLocation().getLat().doubleValue();
@@ -78,31 +95,16 @@ public class SigmaAir
             LatLng dest = new LatLng(latTo, lngTo);
 
 
-            City one = new City(cityFrom);
-            City two = new City(cityTo);
-            one.setLocation(src);
-            two.setLocation(dest);
-
-            cities.add(one);
-            cities.add(two);
-            */
-
-            int[] connection = this.getCities(cityFrom, cityTo);
-            if(connection[0] == -1 || connection[1] == -1)
-            {
-                System.out.println("Cannot add connection one of the cities was not added in first.");
-            }
-
-            double distance = LatLng.calculateDistance(cities.get(connection[0]).getLocation(), cities.get(connection[0]).getLocation());
+            double distance = LatLng.calculateDistance(src, dest);
 
             connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = distance;
 
             connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[0]).getIndexPos()] = 0;
-            connections[cities.get(connection[1]).getIndexPos()][cities.get(connection[1]).getIndexPos()]= 0;
+            connections[cities.get(connection[1]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = 0;
 
             System.out.println(cityFrom + " --> " + cityTo + " added: " + distance);
-
         }catch(IOException ex) {}
+
     }
 
     private int[] getCities(String cityFrom, String cityTo)
@@ -332,14 +334,14 @@ public class SigmaAir
             return "Connection from " + cityFrom + " to " + cityTo + " does not exist!"; */
 
         double[][] dist = new double[MAX_CITIES][MAX_CITIES];
-        double[][] next = new double[MAX_CITIES][MAX_CITIES];
+        City[][] next = new City[MAX_CITIES][MAX_CITIES];
 
         //dist = this.floydMatrix();
 
-        for(int u = 0; u < MAX_CITIES; u++){
-            for(int v = 0; v < MAX_CITIES; v++){
+        for(int u = 0; u < cities.size(); u++){
+            for(int v = 0; v < cities.size(); v++){
                 dist[u][v] = connections[u][v];
-                next[u][v] = v;
+                next[u][v] = cities.get(v);
             }
         }
 
@@ -353,6 +355,26 @@ public class SigmaAir
                     }
                 }
             }
+        }
+
+        City from = cities.get(connection[0]);
+        City to = cities.get(connection[1]);
+        String path = "";
+        if(from != null && to != null)
+        {
+            if(next[from.getIndexPos()][to.getIndexPos()] == null)
+                return "There is no shortest path.";
+
+            int u = from.getIndexPos(), v = to.getIndexPos();
+            path += cities.get(u).getCity();
+
+            while(u != v)
+            {
+                u = next[u][v].getIndexPos();
+                path += " --> " + cities.get(u).getCity();
+            }
+
+            return path + "\nDistance: " + dist[from.getIndexPos()][to.getIndexPos()];
         }
 
         return dist[connection[0]][connection[1]] + "\n" + next[connection[0]][connection[1]] + "\n";
