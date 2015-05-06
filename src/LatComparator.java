@@ -12,6 +12,13 @@ import java.util.Comparator;
 
 public class LatComparator implements Comparator
 {
+    /**
+     * Method to sort by latitude.
+     * @param cityOne First City to compare with.
+     * @param cityTwo Second City to compare with.
+     * @return Returns the comparison made.
+     * <dt><b>Preconditions:</b></dd> Both objects must already be instantiated.
+     */
     public int compare(Object cityOne, Object cityTwo)
     {
         City one = (City) cityOne;
