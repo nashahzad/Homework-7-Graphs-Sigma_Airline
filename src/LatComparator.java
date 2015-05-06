@@ -11,7 +11,7 @@
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class LatComparator implements Comparator, Serializable
+public class LatComparator implements Comparator
 {
     /**
      * Method to sort by latitude.

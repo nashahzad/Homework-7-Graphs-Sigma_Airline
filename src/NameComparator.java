@@ -11,7 +11,7 @@
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class NameComparator implements Comparator, Serializable {
+public class NameComparator implements Comparator {
 
     /**
      * Method to sort alphabetically.

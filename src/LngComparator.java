@@ -11,7 +11,7 @@
 import java.io.Serializable;
 import java.util.Comparator;
 
-public class LngComparator implements Comparator, Serializable
+public class LngComparator implements Comparator
 {
     /**
      * Method to sort by longitude..
