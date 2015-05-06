@@ -8,9 +8,10 @@
  * @author Nauman
  */
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class NameComparator implements Comparator {
+public class NameComparator implements Comparator, Serializable {
 
     /**
      * Method to sort alphabetically.

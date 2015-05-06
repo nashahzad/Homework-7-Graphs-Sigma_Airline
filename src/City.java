@@ -4,6 +4,8 @@ import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.GeocoderRequest;
 import latlng.LatLng;
 
+import java.io.Serializable;
+
 /**
  * Nauman Shahzad
  * 109813732
@@ -14,7 +16,7 @@ import latlng.LatLng;
  * @author Nauman
  */
 
-public class City
+public class City implements Serializable
 {
     private String city;
     private LatLng location;

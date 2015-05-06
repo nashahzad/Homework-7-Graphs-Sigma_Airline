@@ -16,10 +16,11 @@ import latlng.LatLng;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SigmaAir
+public class SigmaAir implements Serializable
 {
     private ArrayList<City> cities;
     public static final int MAX_CITIES = 100;

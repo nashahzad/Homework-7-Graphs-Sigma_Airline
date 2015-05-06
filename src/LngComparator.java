@@ -8,9 +8,10 @@
  * @author Nauman
  */
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class LngComparator implements Comparator
+public class LngComparator implements Comparator, Serializable
 {
     /**
      * Method to sort by longitude..
