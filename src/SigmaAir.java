@@ -49,6 +49,8 @@ public class SigmaAir
 
             cities.add(toAdd);
 
+            connections[toAdd.getIndexPos()][toAdd.getIndexPos()] = 0;
+
             System.out.println(toAdd.getCity() + " has been added: (" + latFrom + ", " + lngFrom + ")");
         }catch(IOException ex)
         {
@@ -101,8 +103,10 @@ public class SigmaAir
 
             connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = distance;
 
+            /*
             connections[cities.get(connection[0]).getIndexPos()][cities.get(connection[0]).getIndexPos()] = 0;
             connections[cities.get(connection[1]).getIndexPos()][cities.get(connection[1]).getIndexPos()] = 0;
+            */
 
             System.out.println(cityFrom + " --> " + cityTo + " added: " + distance);
         }catch(IOException ex) {}
