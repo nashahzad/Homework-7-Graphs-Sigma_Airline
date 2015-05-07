@@ -18,7 +18,7 @@ import java.io.Serializable;
 
 public class City implements Serializable
 {
-    private static final long serialVersionUID = 7526471155622776147L;
+    //private static final long serialVersionUID = 7526471155622776147L;
     private String city;
     private LatLng location;
     private int indexPos;
