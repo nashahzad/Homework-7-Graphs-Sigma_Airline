@@ -22,6 +22,7 @@ import java.util.Scanner;
 
 public class SigmaAir implements Serializable
 {
+    private static final long serialVersionUID = 7526471155622776147L;
     private ArrayList<City> cities;
     private static final int MAX_CITIES = 100;
     private double[][] connections;
