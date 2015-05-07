@@ -11,7 +11,7 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class SigmaAirDriver
+public class SigmaAirDriver implements Serializable
 {
     /**
      * Method to see if an airline.obj file exists and to load it in.
