@@ -423,6 +423,12 @@ public class SigmaAir implements Serializable
         double[][] dist = new double[MAX_CITIES][MAX_CITIES];
         City[][] next = new City[MAX_CITIES][MAX_CITIES];
 
+        for(int u = 0; u < MAX_CITIES; u++){
+            for(int v = 0; v < MAX_CITIES; v++){
+                dist[u][v] = Double.POSITIVE_INFINITY;
+                next[u][v] = null;
+            }
+        }
         //dist = this.floydMatrix();
 
         for(int u = 0; u < cities.size(); u++){
@@ -432,9 +438,9 @@ public class SigmaAir implements Serializable
             }
         }
 
-        for(int k = 1; k < MAX_CITIES; k++){
-            for(int i = 1; i < MAX_CITIES; i++){
-                for(int j = 1; j < MAX_CITIES; j++){
+        for(int k = 0; k < MAX_CITIES; k++){
+            for(int i = 0; i < MAX_CITIES; i++){
+                for(int j = 0; j < MAX_CITIES; j++){
                     if(dist[i][j] + dist[k][j] < dist[i][j])
                     {
                         dist[i][j] = dist[i][k] + dist[k][j];
