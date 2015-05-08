@@ -35,6 +35,11 @@ public class SigmaAir implements Serializable
     {
         cities = new ArrayList<City>();
         connections = new double[MAX_CITIES][MAX_CITIES];
+        for(int u = 0; u < MAX_CITIES; u++){
+            for(int v = 0; v < MAX_CITIES; v++){
+                connections[u][v] = Double.POSITIVE_INFINITY;
+            }
+        }
     }
 
     /**
@@ -441,7 +446,7 @@ public class SigmaAir implements Serializable
         for(int k = 0; k < MAX_CITIES; k++){
             for(int i = 0; i < MAX_CITIES; i++){
                 for(int j = 0; j < MAX_CITIES; j++){
-                    if(dist[i][j] + dist[k][j] < dist[i][j])
+                    if(dist[i][k] + dist[k][j] < dist[i][j])
                     {
                         dist[i][j] = dist[i][k] + dist[k][j];
                         next[i][j] = next[i][k];
@@ -467,7 +472,7 @@ public class SigmaAir implements Serializable
                 path = path + " --> " + cities.get(u).getCity();
             }
 
-            return path + "\nDistance: " + dist[u][v];
+            return path + "\nDistance: " + dist[connection[0]][connection[1]];
         }
 
         return dist[connection[0]][connection[1]] + "\n" + next[connection[0]][connection[1]] + "\n";
